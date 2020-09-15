@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap');
+
+i{
+    float: right;
+}
+p[className=center]{
+    background-color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+input, select, textarea{
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+
+}
+
+textarea:focus, input:focus {
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+
+}
+span{
+    font-family: 'Roboto Condensed', sans-serif;
+
+}
