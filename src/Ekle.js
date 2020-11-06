@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Todos from './Todos'
 
+
 class Ekle extends Component{
     state={
         icerik: ''
@@ -21,8 +22,8 @@ class Ekle extends Component{
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <input className="" type="text" onChange={this.handleChange}
-                        placeholder="Yapılacak bir iş ekleyin..."
+                    <input className="validate" type="text" onChange={this.handleChange}
+                        placeholder="Add a description for your stuff..."
                         value={this.state.icerik}
                     />
                 </form>

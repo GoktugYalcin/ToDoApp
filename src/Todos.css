@@ -20,5 +20,12 @@ textarea:focus, input:focus {
 }
 span{
     font-family: 'Roboto Condensed', sans-serif;
+    color: black;
+}
 
+.collection-item{
+    opacity: 0.75;
+}
+.collection-item:hover{
+    opacity: 1;
 }
