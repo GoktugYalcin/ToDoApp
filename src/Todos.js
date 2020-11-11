@@ -1,6 +1,6 @@
 import React from 'react'
 import './Todos.css'
-var ReactCSSTransitionGroup = require('react-transition-group'); // ES5 with npm
+import 'hover.css'
 
 const Todos = ({todos, deleteTodo,todoUp,todoDown}) =>{
     const todoList = todos.length ? (
@@ -8,9 +8,10 @@ const Todos = ({todos, deleteTodo,todoUp,todoDown}) =>{
             return(
                 <div className="collection-item blue lighten-4" key={todo.id}>
                     <span>{todo.icerik}</span>
-                    <i class="small material-icons" onClick={()=>{todoUp(todo.id)}}>expand_less</i>
-                    <i class="small material-icons" onClick={()=>{todoDown(todo.id)}}>expand_more</i>
-                    <i id="sil" class="small material-icons green-text" onClick={()=>{deleteTodo(todo.id)}}>check</i>
+                    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"></link>
+                    <i className="small material-icons hvr-bob" onClick={()=>{todoUp(todo.id)}}>expand_less</i>
+                    <i className="small material-icons hvr-sink" onClick={()=>{todoDown(todo.id)}}>expand_more</i>
+                    <i id="sil" className="small material-icons green-text hvr-pop" onClick={()=>{deleteTodo(todo.id)}}>check</i>
                 </div>
             )
         })
@@ -24,4 +25,11 @@ const Todos = ({todos, deleteTodo,todoUp,todoDown}) =>{
     )
 }
 
+function pad(d) {
+    return (d < 10) ? '0' + d.toString() : d.toString();
+}
+
 export default Todos;
+
+
+

@@ -9,10 +9,6 @@ body{
     font-family: 'Exo', sans-serif;
 }
 
-div[className=todos]{
-    border-radius: 10px;
-}
-
 .context {
     width: 100%;
     position: absolute;
@@ -35,7 +31,8 @@ div[className=todos]{
 }
 
 .circles{
-    position: absolute;
+    z-index:1;
+    position:relative;
     top: 0;
     left: 0;
     width: 100%;
@@ -50,7 +47,7 @@ div[className=todos]{
     width: 20px;
     height: 20px;
     background: rgba(255, 255, 255, 0.2);
-    animation: animate 25s linear infinite;
+    animation: animate 15s linear infinite;
     bottom: -150px;
 
 }

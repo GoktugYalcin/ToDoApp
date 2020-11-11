@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap');
 
 i{
     float: right;
+    font-size: 0;
 }
 p[className=center]{
     background-color: white;
@@ -9,23 +11,31 @@ p[className=center]{
 }
 input, select, textarea{
     color: white;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 
 }
 
 textarea:focus, input:focus {
     color: white;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
 
 }
 span{
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     color: black;
 }
 
 .collection-item{
     opacity: 0.75;
+    z-index:1000;
+    position:relative;
+
 }
 .collection-item:hover{
     opacity: 1;
+    transition: opacity .5s ease;
+    -o-transition: opacity .5s ease; /* opera */
+    -ms-transition: opacity .5s ease; /* IE 10 */
+    -moz-transition: opacity .5s ease; /* Firefox */
+    -webkit-transition: opacity .5s ease; /*safari and chrome */
 }

@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Todos from './Todos'
 import Ekle from './Ekle'
 import './App.css'
-import isler from './data.json'
 import { db } from './firebase'
+import {Helmet} from "react-helmet";
 
 
 class App extends Component{
+
   state={
     todos: [
 
@@ -17,6 +18,7 @@ class App extends Component{
     {swap_id: 9999, swap_icerik:''}
     ]
   }
+
   deleteTodo=(id)=> {
     const todos = this.state.todos.filter(todo =>{
       return todo.id !== id
@@ -24,7 +26,8 @@ class App extends Component{
     this.setState(
       {todos}
     )
-    db.collection("stuff").doc("stuff"+id).delete()
+    var id2 = (id < 10) ? '0' + id.toString() : id.toString();
+    db.collection("stuff").doc("stuff"+id2).delete()
     .then(function() {
       console.log("Veriler başarıyla silindi!");
   })
@@ -37,6 +40,7 @@ class App extends Component{
     {
       let data = [...this.state.todos];
       let temp = data[id-2].id;
+      console.log(temp);
       data[id-2].id = data[id-1].id;
       data[id-1].id = temp;
       data.sort((a, b) => a.id > b.id ? 1 : -1)
@@ -48,6 +52,17 @@ class App extends Component{
     else
       console.log('ztn en üsttesin cnm..');
   }
+  getData = () =>{
+    db.collection("stuff")
+  .get()
+  .then(querySnapshot => {
+    const data = querySnapshot.docs.map(doc => doc.data());
+    this.setState({
+      todos:data
+    })
+  });
+  }
+
   moveDown=(id)=>{
     if(id<this.state.todos.length)
     {
@@ -65,6 +80,10 @@ class App extends Component{
       console.log('ztn en üsttesin cnm..');
   }
   ekleIslem =(todo) =>{
+    if(!(todo.icerik === null || todo.icerik.match(/\S/))){
+      window.alert("This stuff is empty!");
+      return;
+  }
     if(this.state.todos.length===0)
     todo.id = 1;
     else
@@ -73,7 +92,8 @@ class App extends Component{
     this.setState({
       todos: isler
     })
-    db.collection("stuff").doc("stuff"+todo.id).set({
+    var id = (todo.id < 10) ? '0' + todo.id.toString() : todo.id.toString();
+    db.collection("stuff").doc("stuff"+id).set({
       id: todo.id,
       icerik: todo.icerik
   })
@@ -86,7 +106,7 @@ class App extends Component{
     console.log(isler)
 }
 componentDidMount() {
-    db.collection("stuff")
+  db.collection("stuff")
   .get()
   .then(querySnapshot => {
     const data = querySnapshot.docs.map(doc => doc.data());
@@ -94,12 +114,13 @@ componentDidMount() {
       todos:data
     })
   });
-}
+  }
+
   render(){
     return (
       <div>
-      <div class="area">
-            <ul class="circles">
+      <div className="area">
+            <ul className="circles">
             <div className="todo-app container">
         <h1 className="center white-text">To-Do List!</h1>
         <Todos todos={this.state.todos}
@@ -108,6 +129,7 @@ componentDidMount() {
                deleteTodo={this.deleteTodo} />
         <Ekle ekleIslem={this.ekleIslem} />
       </div>
+      <div id="but"></div>
                     <li></li>
                     <li></li>
                     <li></li>
@@ -119,9 +141,7 @@ componentDidMount() {
                     <li></li>
                     <li></li>
             </ul>
-
             </div>
-
       </div>
 
 
